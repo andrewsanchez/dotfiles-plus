@@ -1,5 +1,6 @@
 # Compiled source #
 ###################
+#__*
 *.pyc
 *.pyo
 *.com
