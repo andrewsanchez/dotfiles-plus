@@ -30,7 +30,10 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(git
+   '(
+     markdown
+     html
+     git
      helm
      clojure
      python
@@ -40,6 +43,8 @@ values."
      spotify
      deft
      search-engine
+     speed-reading
+     spell-checking
      ;; themes-megapack
      ;; markdown
      ;; auto-completion
@@ -47,7 +52,6 @@ values."
      ;; (shell :variable
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     ;; spell-checking
      ;; syntax-checking
      ;; version-control
      )
@@ -55,7 +59,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(color-theme-solarized)
+   dotspacemacs-additional-packages '(color-theme-solarized
+                                      ob-ipython
+                                      wiki-summary
+                                      toc-org
+                                      dash)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -128,14 +136,14 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light)
+   dotspacemacs-themes '(spacemacs-light
+                         spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 16
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -294,8 +302,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  ;; Colors
    (setq erc-prompt-for-password nil)
    (setq erc-prompt-for-nickserv-password nil)
+
    ;; IRC
    (setq erc-server-list
          `(("irc.freenode.net" :port "6697" :nick "truthling" :ssl t)))
@@ -317,7 +327,7 @@ you should place your code here."
     ;; (spacemacs/load-theme 'solarized)
 
     ;; Deft
-    (setq deft-directory "~/Documents/Org")
+    (setq deft-directory "~/org")
 
     ;; Yasnippet
     (add-to-list 'load-path
@@ -326,6 +336,57 @@ you should place your code here."
     (yas-global-mode 1)
 
     ;; Org
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+             "* TODO %?\n")
+            ("j" "Journal" entry (file+datetree "~/org/journal.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("n" "note" entry (file+headline "~/org/catpure.org" "Capture")
+             "* %i\n")))
+
+    ;; Quickly make cloze deletions for Anki cards
+    (defun wrap-text (b e txt)
+
+    (interactive "r\nc")
+    (save-restriction
+     (narrow-to-region b e)
+     (goto-char (point-min))
+     (insert "{{c")
+     (insert txt)
+     (insert "::")
+     (goto-char (point-max)) 
+     (insert "::}}")
+     ))
+
+
+    ;; Babel
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((ipython . t)
+       ;; other languages..
+       ))
+    (setq org-confirm-babel-evaluate nil)
+
+    ;; Refile
+    (defun my-org-files-list ()
+      (delq nil
+            (mapcar (lambda (buffer)
+                      (buffer-file-name buffer))
+                    (org-buffer-list 'files t))))
+
+    (setq org-refile-targets (quote (("~/org/notes.org" :maxlevel . 4)
+                                     ("~/org/process.org" :maxlevel . 4)
+                                     ("~/Projects/unotes.wiki/*" :maxlevel . 4)
+                                     (my-org-files-list :maxlevel . 4)
+                                     )))
+
+    ;; Agenda
+    (setq org-agenda-files
+          '("~/org/gtd.org"))
+    (setq org-agenda-default-appointment-duration 60)
+
+    ;; Key bindings
+
     ;; start an unordered list item from a heading
     (evil-leader/set-key-for-mode 'org-mode
       "o" (lambda nil (interactive) (evil-org-eol-call (quote (lambda nil (org-insert-heading) (org-metaright) (org-ctrl-c-minus))))))
@@ -334,29 +395,28 @@ you should place your code here."
     (evil-leader/set-key-for-mode 'org-mode
       "C-o" (lambda nil (interactive) (evil-org-eol-call (quote (lambda nil (org-insert-heading-respect-content) (org-metaleft) )))))
 
-    ;; ;; Quickly make cloze deletions for Anki cards
-    ;; (defun wrap-text (start end)
-    ;;   (interactive "r")
-    ;;   (goto-char start)
-    ;;   (insert "{{")
-    ;;   (goto-char (2+ end))
-    ;;   (insert "}}")
-    ;;   (next-line))
-    ;; ;;(defun wrap-text (b e txt)
-    ;; ;;(interactive "r\nMCloze Number: ")
-    ;; ;;(save-restriction
-    ;; ;;  (narrow-to-region b e)
-    ;; ;;  (goto-char (point-min))
-    ;; ;;  (insert "{{c")
-    ;; ;;  (insert txt)
-    ;; ;;  (insert "::")
-    ;; ;;  (goto-char (point-max))
-    ;; ;;  (insert "::}}")))
+    (evil-leader/set-key-for-mode 'org-mode "1" 'wrap-text)
 
-    ;; (evil-leader/set-key-for-mode 'org-mode "1" 'wrap-text)
+    (evil-leader/set-key-for-mode 'org-mode "SPC" 'helm-org-in-buffer-headings)
+
+    ;; Publish
+    (setq org-publish-project-alist
+          '(
+
+            ("org-andrewsanchez"
+             :base-directory "~/org"
+             :base-extension "org"
+             ;; Path to your Jekyll project.
+             :publishing-directory "~/Projects/andrewsanchez.github.io/"
+             :recursive t
+             :publishing-function org-html-publish-to-html
+             :headline-levels 4 
+             :html-extension "html"
+             :body-only t ;; Only export section between <body> </body>
+             )
+            ))
 
     )
-
 
   ;; Do not write anything past this comment. This is where Emacs will
   ;; auto-generate custom variable definitions.
@@ -380,6 +440,8 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(compilation-message-face (quote default))
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
@@ -413,12 +475,19 @@ you should place your code here."
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
  '(magit-diff-use-overlays nil)
+ '(magit-git-executable "git")
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
+ '(org-agenda-default-appointment-duration 60 t)
+ '(org-agenda-files (quote ("~/org/gtd.org")))
+ '(org-agenda-restore-windows-after-quit t t)
+ '(org-default-notes-file "notes.org")
+ '(org-export-backends (quote (ascii html icalendar latex md odt)))
+ '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo)))
  '(package-selected-packages
    (quote
-    (color-theme-solarized color-theme spotify helm-spotify multi erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks yapfify pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-present org-pomodoro alert log4e gntp org-download live-py-mode hy-mode htmlize helm-pydoc gnuplot cython-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode anaconda-mode pythonic smeargle orgit org magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (flyspell-correct-helm flyspell-correct auto-dictionary spotify helm-spotify multi erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks yapfify pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-present org-pomodoro alert log4e gntp org-download live-py-mode hy-mode htmlize helm-pydoc gnuplot cython-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode anaconda-mode pythonic smeargle orgit org magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
