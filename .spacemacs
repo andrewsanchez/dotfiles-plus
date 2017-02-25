@@ -44,9 +44,9 @@ values."
      deft
      search-engine
      speed-reading
-     spell-checking
+     as-org
+     ;; spell-checking
      ;; themes-megapack
-     ;; markdown
      ;; auto-completion
      ;; better-defaults
      ;; (shell :variable
@@ -63,7 +63,9 @@ values."
                                       ob-ipython
                                       wiki-summary
                                       toc-org
-                                      dash)
+                                      dash
+                                      hydra
+                                      worf)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -212,7 +214,7 @@ values."
    ;; in all non-asynchronous sources. If set to `source', preserve individual
    ;; source settings. Else, disable fuzzy matching in all sources.
    ;; (default 'always)
-   dotspacemacs-helm-use-fuzzy 'always
+   dotspacemacs-helm-use-fuzzy 'source
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
    dotspacemacs-enable-paste-transient-state t
@@ -321,6 +323,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+    ;; Emacs
+    (setq vc-follow-symlinks t)
     ;; Themes
     (set-terminal-parameter nil 'background-mode 'dark)
     (set-frame-parameter nil 'background-mode 'dark)
@@ -334,88 +338,6 @@ you should place your code here."
                  "~/.emacs.d/elpa/yasnippet-20160612.620")
     (require 'yasnippet)
     (yas-global-mode 1)
-
-    ;; Org
-    (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-             "* TODO %?\n")
-            ("j" "Journal" entry (file+datetree "~/org/journal.org")
-             "* %?\nEntered on %U\n  %i\n  %a")
-            ("n" "note" entry (file+headline "~/org/catpure.org" "Capture")
-             "* %i\n")))
-
-    ;; Quickly make cloze deletions for Anki cards
-    (defun wrap-text (b e txt)
-
-    (interactive "r\nc")
-    (save-restriction
-     (narrow-to-region b e)
-     (goto-char (point-min))
-     (insert "{{c")
-     (insert txt)
-     (insert "::")
-     (goto-char (point-max)) 
-     (insert "::}}")
-     ))
-
-
-    ;; Babel
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '((ipython . t)
-       ;; other languages..
-       ))
-    (setq org-confirm-babel-evaluate nil)
-
-    ;; Refile
-    (defun my-org-files-list ()
-      (delq nil
-            (mapcar (lambda (buffer)
-                      (buffer-file-name buffer))
-                    (org-buffer-list 'files t))))
-
-    (setq org-refile-targets (quote (("~/org/notes.org" :maxlevel . 4)
-                                     ("~/org/process.org" :maxlevel . 4)
-                                     ("~/Projects/unotes.wiki/*" :maxlevel . 4)
-                                     (my-org-files-list :maxlevel . 4)
-                                     )))
-
-    ;; Agenda
-    (setq org-agenda-files
-          '("~/org/gtd.org"))
-    (setq org-agenda-default-appointment-duration 60)
-
-    ;; Key bindings
-
-    ;; start an unordered list item from a heading
-    (evil-leader/set-key-for-mode 'org-mode
-      "o" (lambda nil (interactive) (evil-org-eol-call (quote (lambda nil (org-insert-heading) (org-metaright) (org-ctrl-c-minus))))))
-
-    ;; create new heading promoted one level from the current heading
-    (evil-leader/set-key-for-mode 'org-mode
-      "C-o" (lambda nil (interactive) (evil-org-eol-call (quote (lambda nil (org-insert-heading-respect-content) (org-metaleft) )))))
-
-    (evil-leader/set-key-for-mode 'org-mode "1" 'wrap-text)
-
-    (evil-leader/set-key-for-mode 'org-mode "SPC" 'helm-org-in-buffer-headings)
-
-    ;; Publish
-    (setq org-publish-project-alist
-          '(
-
-            ("org-andrewsanchez"
-             :base-directory "~/org"
-             :base-extension "org"
-             ;; Path to your Jekyll project.
-             :publishing-directory "~/Projects/andrewsanchez.github.io/"
-             :recursive t
-             :publishing-function org-html-publish-to-html
-             :headline-levels 4 
-             :html-extension "html"
-             :body-only t ;; Only export section between <body> </body>
-             )
-            ))
-
     )
 
   ;; Do not write anything past this comment. This is where Emacs will
@@ -479,15 +401,17 @@ you should place your code here."
  '(nrepl-message-colors
    (quote
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
- '(org-agenda-default-appointment-duration 60 t)
+ '(org-agenda-default-appointment-duration 60)
  '(org-agenda-files (quote ("~/org/gtd.org")))
  '(org-agenda-restore-windows-after-quit t t)
+ '(org-clock-sound t)
  '(org-default-notes-file "notes.org")
  '(org-export-backends (quote (ascii html icalendar latex md odt)))
  '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo)))
+ '(org-timer-default-timer "00:60:00")
  '(package-selected-packages
    (quote
-    (flyspell-correct-helm flyspell-correct auto-dictionary spotify helm-spotify multi erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks yapfify pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-present org-pomodoro alert log4e gntp org-download live-py-mode hy-mode htmlize helm-pydoc gnuplot cython-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode anaconda-mode pythonic smeargle orgit org magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (worf zoutline swiper ivy spotify helm-spotify multi erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks yapfify pyvenv pytest pyenv-mode py-isort pip-requirements org-projectile org-present org-pomodoro alert log4e gntp org-download live-py-mode hy-mode htmlize helm-pydoc gnuplot cython-mode clj-refactor inflections edn multiple-cursors paredit yasnippet peg cider-eval-sexp-fu cider seq queue clojure-mode anaconda-mode pythonic smeargle orgit org magit-gitflow helm-gitignore gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
