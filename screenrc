@@ -19,10 +19,8 @@ stuff 'ls -l'
 screen -t Scratch 2 bash
 stuff 'cd $HOME/scratch'
 screen -t IPython 3 bash
-stuff 'cd $HOME/NCBITK && ipython'
-stuff 'import os'
-stuff 'from importlib import reload'
-stuff 'from NCBITK import *'
+stuff 'cd $HOME/projects/NCBITK && ipython'
+stuff 'import os, importlib, NCBITK'
 select 1
 
 # get rid of silly xoff stuff
