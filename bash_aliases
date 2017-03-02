@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # custom functions
 fl() {
     for i in `find $1 -type $2`;
