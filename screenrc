@@ -17,11 +17,12 @@ defbce on
 screen -t Home 1 bash
 stuff 'ls -l'
 screen -t Scratch 2 bash
-stuff 'cd /scratch/aas229 && c && module load anaconda/3.latest'
+stuff 'cd $HOME/scratch'
 screen -t IPython 3 bash
-stuff 'cd NCBITK && module load anaconda/3.latest && ipython'
+stuff 'cd $HOME/NCBITK && ipython'
 stuff 'import os'
 stuff 'from importlib import reload'
+stuff 'from NCBITK import *'
 select 1
 
 # get rid of silly xoff stuff
