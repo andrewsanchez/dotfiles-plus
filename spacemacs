@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     javascript
      markdown
      html
      git
@@ -342,6 +343,9 @@ you should place your code here."
                  "~/.emacs.d/elpa/yasnippet-20160612.620")
     (require 'yasnippet)
     (yas-global-mode 1)
+
+    ;; Git
+    (global-git-commit-mode t)
     )
 
   ;; Do not write anything past this comment. This is where Emacs will
@@ -401,7 +405,7 @@ you should place your code here."
    (quote
     ("#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36" "#002b36")))
  '(magit-diff-use-overlays nil)
- '(magit-git-executable "git")
+ '(magit-git-executable "~/usr/bin/git")
  '(neo-hidden-regexp-list
    (quote
     ("^\\." "\\.pyc$" "~$" "^#.*#$" "\\.elc$" "__pycache__")))
