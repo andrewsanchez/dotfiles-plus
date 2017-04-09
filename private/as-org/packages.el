@@ -119,7 +119,7 @@
         ))
 
 (setq org-clock-sound t)
- (setq org-tag-alist '(("work" . ?w) ("@home" . ?h) ("@computer" . ?c) ("10-min" . ?x)))
+ (setq org-tag-alist '(("work" . ?w) ("@home" . ?h) ("@computer" . ?c) ("10-min" . ?x) ("purchase" . ?p)))
 '(org-agenda-default-appointment-duration 60)
 '(org-agenda-files (quote ("~/org/gtd.org")))
 '(org-agenda-restore-windows-after-quit t t)

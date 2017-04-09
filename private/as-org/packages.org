@@ -103,9 +103,7 @@
                        (buffer-file-name buffer))
                      (org-buffer-list 'files t))))
 
-     (setq org-refile-targets (quote (("~/org/notes.org" :maxlevel . 4)
-                                      ("~/org/process.org" :maxlevel . 4)
-                                      ("~/Projects/unotes.wiki/*" :maxlevel . 4)
+     (setq org-refile-targets (quote (("~/org/capture.org" :maxlevel . 4)
                                       (my-org-files-list :maxlevel . 4)
                                       )))
 #+END_SRC
@@ -157,7 +155,7 @@
 
 #+BEGIN_SRC elisp :tangle yes
    (setq org-clock-sound t)
-   (setq org-tag-alist '(("work" . ?w) ("@home" . ?h) ("@computer" . ?c) ("10-min" . ?x)))
+   (setq org-tag-alist '(("work" . ?w) ("@home" . ?h) ("@computer" . ?c) ("10-min" . ?x) ("purchase" . ?p)))
   '(org-agenda-default-appointment-duration 60)
   '(org-agenda-files (quote ("~/org/gtd.org")))
   '(org-agenda-restore-windows-after-quit t t)
