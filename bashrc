@@ -1,7 +1,6 @@
 #!/bin/bash
 # .bashrc
 
-export PS1="\n[\w]\n$ "
 export PATH="$HOME/usr/bin:$HOME/anaconda3/bin:$HOME/bin:$PATH"
 
 # Source global definitions
@@ -29,3 +28,6 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
+
+# Fixes problem with emacs tramp
+export PS1="[\u@\h \w ]$ "
