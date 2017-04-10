@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: string format
+# key: sf
+print
+# --
+"${1:text}".format(${0:var})
