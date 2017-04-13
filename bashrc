@@ -29,5 +29,7 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+alias em=emacs-25.1
+
 # Fixes problem with emacs tramp
 export PS1="[\u@\h \w ]$ "
