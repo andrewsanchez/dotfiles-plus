@@ -46,8 +46,8 @@ values."
      search-engine
      speed-reading
      as-org
+     themes-megapack
      ;; spell-checking
-     ;; themes-megapack
      ;; auto-completion
      ;; better-defaults
      ;; (shell :variable
