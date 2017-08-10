@@ -76,9 +76,7 @@
                   (buffer-file-name buffer))
                 (org-buffer-list 'files t))))
 
-(setq org-refile-targets (quote (("~/org/notes.org" :maxlevel . 4)
-                                 ("~/org/process.org" :maxlevel . 4)
-                                 ("~/Projects/unotes.wiki/*" :maxlevel . 4)
+(setq org-refile-targets (quote (("~/org/capture.org" :maxlevel . 4)
                                  (my-org-files-list :maxlevel . 4)
                                  )))
 
@@ -128,5 +126,33 @@
 '(org-export-backends (quote (ascii html icalendar latex md odt)))
 '(org-icalendar-use-scheduled (quote (event-if-not-todo event-if-todo)))
 '(org-timer-default-timer "00:60:00")
+
+(setq org-publish-project-alist
+      '(
+
+  ("org-andrewsanchez"
+          ;; Path to your org files.
+          :base-directory "~/projects/andrewsanchez/org/"
+          :base-extension "org"
+
+          ;; Path to your Jekyll project.
+          :publishing-directory "~/projects/andrewsanchez/jekyll/"
+          :recursive t
+          :publishing-function org-publish-org-to-html
+          :headline-levels 4 
+          :html-extension "html"
+          :body-only t ;; Only export section between <body> </body>
+    )
+
+
+    ("org-static-andrew"
+          :base-directory "~/projects/andrewsanchez/org/"
+          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+          :publishing-directory "~/projects/andrewsanchez/"
+          :recursive t
+          :publishing-function org-publish-attachment)
+
+    ("andrew" :components ("org-andrewsanchez" "org-static-andrew"))
+))
 
 )
