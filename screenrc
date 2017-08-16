@@ -17,9 +17,9 @@ defbce on
 screen -t Home 1 bash
 stuff 'ls -l'
 screen -t Scratch 2 bash
-stuff 'cd $HOME/scratch'
+stuff 'cd /home/aas229/scratch && ls -l'
 screen -t IPython 3 bash
-stuff 'cd $HOME/projects/NCBITK && ipython'
+stuff 'ipython'
 select 1
 
 # get rid of silly xoff stuff

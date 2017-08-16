@@ -6,3 +6,5 @@
     username = andrewsanchez
 [alias]
 	unadd = reset HEAD
+[push]
+	default = current
