@@ -31,8 +31,9 @@
 ## lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
         'from importlib import reload',
-        'import pandas as pd'
-        'import os',
+        'import pandas as pd',
+	'import numpy as np',
+        'import os'
         ]
 
 ## A list of dotted module names of IPython extensions to load.
