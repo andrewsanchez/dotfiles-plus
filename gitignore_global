@@ -47,8 +47,13 @@
 ehthumbs.db
 Thumbs.db
 
-# Venvs
+# Venvs #
 venv/
+#########
+
+# Config #
+##########
+.dir-locals.el
 
 # Python Distribution / packaging
 .Python
