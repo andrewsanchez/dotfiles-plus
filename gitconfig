@@ -8,3 +8,5 @@
 	unadd = reset HEAD
 [push]
 	default = current
+[merge]
+	ff = false
