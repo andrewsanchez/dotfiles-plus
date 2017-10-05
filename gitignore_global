@@ -36,6 +36,7 @@
 *.sql
 *.sqlite
 *.tramp_history
+.ipynb_checkpoints/
 
 # OS generated files #
 ######################
