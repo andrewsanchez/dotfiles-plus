@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="/home/aas229/usr/bin:/home/aas229/anaconda3/bin:/home/aas229/bin:/usr/bin:/bin"
+export PATH="/home/aas229/usr/bin:/home/aas229/miniconda3/bin:/home/aas229/bin:/usr/bin:/bin"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
