@@ -18,9 +18,9 @@ defbce on
 
 # default windows
 screen -t Home 1 bash
-stuff 'ls -l'
+stuff 'lls'
 screen -t Scratch 2 bash
-stuff 'cd /home/aas229/scratch && ls -l'
+stuff 'cd /scratch/aas229'
 screen -t IPython 3 bash
 stuff 'ipython'
 select 1
