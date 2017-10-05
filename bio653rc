@@ -1,0 +1,23 @@
+#!/bin/bash
+
+export PATH="/mnt/data0/home/asanchez/usr/bin:/mnt/data0/home/asanchez/anaconda3/bin:/mnt/data0/home/asanchez/bin:/usr/bin:/bin"
+
+# bash aliass
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Fixes problem with emacs tramp
+export PS1="[\u@\h \w ]$ "
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
