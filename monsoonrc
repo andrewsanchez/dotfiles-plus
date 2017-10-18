@@ -33,3 +33,4 @@ alias em=emacs-25.1
 # Fixes problem with emacs tramp
 export PS1="[\u@\h \w ]$ "
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+export TERM=xterm-256color
