@@ -1,5 +1,0 @@
-# key: walk
-# name: walk
-# --
-for root, dirs, files in os.walk(${1:dir}):
-    $0
