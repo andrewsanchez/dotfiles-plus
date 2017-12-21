@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="/home/aas229/usr/bin:/home/aas229/anaconda3/bin:/home/aas229/bin:/usr/bin:/bin"
+export PATH="/home/aas229/usr/bin:/home/aas229/miniconda3/bin:/home/aas229/bin:/usr/bin:/bin"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -33,3 +33,4 @@ alias em=emacs-25.1
 # Fixes problem with emacs tramp
 export PS1="[\u@\h \w ]$ "
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+export TERM=xterm-256color
