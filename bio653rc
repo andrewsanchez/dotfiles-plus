@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="/mnt/data0/home/asanchez/usr/bin:/mnt/data0/home/asanchez/anaconda3/bin:/mnt/data0/home/asanchez/bin:/usr/bin:/bin"
+export PATH="/usr/bin:/mnt/data0/home/asanchez/usr/bin:/mnt/data0/home/asanchez/miniconda3/bin:/mnt/data0/home/asanchez/bin:/bin"
 
 # bash aliass
 if [ -f ~/.bash_aliases ]; then
