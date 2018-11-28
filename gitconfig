@@ -2,8 +2,8 @@
 	excludesfile = ~/.gitignore_global
 [user]
 	email = inbox.asanchez@gmail.com
-    name = Andrew Sanchez
-    username = andrewsanchez
+	name = Andrew Sanchez
+	username = andrewsanchez
 [alias]
 	unadd = reset HEAD
 [push]
