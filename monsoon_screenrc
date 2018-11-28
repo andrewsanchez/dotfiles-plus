@@ -18,11 +18,11 @@ defbce on
 
 # default windows
 screen -t Home 1 bash
-stuff 'lls'
+stuff 'conda activate genbankqc && lls'
 screen -t Scratch 2 bash
-stuff 'cd /scratch/aas229'
+stuff 'conda activate genbankqc && cd /scratch/aas229 && lls'
 screen -t IPython 3 bash
-stuff 'ipython'
+stuff 'conda activate genbankqc && ipython'
 select 1
 
 # get rid of silly xoff stuff
