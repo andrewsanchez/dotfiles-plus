@@ -1,9 +1,6 @@
 [submodule "spacemacs-layers"]
 	path = spacemacs-layers
 	url = https://github.com/andrewsanchez/spacemacs-layers
-[submodule "emacs/spacemacs-layers"]
-	path = emacs/spacemacs-layers
-	url = https://github.com/andrewsanchez/spacemacs-layers
 [submodule "emacs-config"]
 	path = emacs-config
 	url = https://github.com/andrewsanchez/emacs-config
