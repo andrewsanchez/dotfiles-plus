@@ -1,0 +1,90 @@
+---
+downloads: ~/.ansible-downloads/
+
+configure_dotfiles: yes
+configure_sudoers: no
+configure_terminal: no
+# TODO Enable this step after customizing .osx
+configure_osx: no
+
+dotfiles_repo: https://github.com/andrewsanchez/dotfiles-plus.git
+dotfiles_repo_accept_hostkey: yes
+dotfiles_repo_local_destination: ~/Projects/dotfiles-plus
+dotfiles_files:
+  - .bash_profile
+  - .bash_aliases
+  - .gitignore
+  - .gitconfig
+  - spacemacs-layers/.spacemacs
+
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  - zsh #TODO add oh my zsh
+  - zsh-completions
+  - autoconf
+  - bash-completion
+  - doxygen
+  - httpie
+  - sqlite
+  - node
+  - git
+  - gpg
+  - hub
+  - readline
+  - openssl
+  - wget
+  - tree
+  - ssh-copy-id
+  - shellcheck
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  #- d12frosted/emacs-plus
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  #- d12frosted/emacs-plus/emacs-plus
+  - iterm2
+  - pycharm
+  - intellij-idea
+  - copyq
+  - docker
+  - spotify
+  - keyboard-maestro
+  - alfred
+  - karabiner-elements
+  - dropbox
+  - google-chrome
+  #- virtualbox
+  - vagrant
+
+# See `geerlingguy.mas` role documentation for usage instructions.
+mas_installed_apps: []
+mas_email: ""
+mas_password: ""
+
+osx_script: "~/.osx --no-restart"
+
+# Install packages from other package managers.
+# Note: You are responsible for making sure the required package managers are
+# installed, eg. through homebrew.
+composer_packages: []
+  # - name: drush
+  #   state: present # present/absent, default: present
+  #   version: "^8.1" # default: N/A
+gem_packages: []
+  # - name: bundler
+  #   state: present # present/absent/latest, default: present
+  #   version: "~> 1.15.1" # default: N/A
+npm_packages: []
+  # - name: webpack
+  #   state: present # present/absent/latest, default: present
+  #   version: "^2.6" # default: N/A
+pip_packages: []
+  # - name: mkdocs
+  #   state: present # present/absent/latest, default: present
+  #   version: "0.16.3" # default: N/A
+
+# Glob pattern to ansible task files to run after all other tasks are finished.
+post_provision_tasks: []
