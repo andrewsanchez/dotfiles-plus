@@ -16,10 +16,11 @@ dotfiles_files:
   - .gitignore
   - .gitconfig
   - spacemacs-layers/.spacemacs
+  - .zshrc
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
-  - zsh #TODO add oh my zsh
+  - zsh
   - zsh-completions
   - autoconf
   - bash-completion
