@@ -34,6 +34,7 @@ homebrew_installed_packages:
   - hub
   - readline
   - openssl
+  - htop
   - wget
   - tree
   - ssh-copy-id
