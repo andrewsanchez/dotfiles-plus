@@ -51,7 +51,10 @@ HYPHEN_INSENSITIVE="true"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=~/.zsh_custom
 
-plugins=(git)
+# plugins=(
+#     git
+#     docker
+# )
 
 source $ZSH/oh-my-zsh.sh
 
