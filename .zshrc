@@ -72,11 +72,4 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# misc aliases
-alias c='clear'
-alias bc='bc -l'
-alias rm='rm -Rf'
-alias mkdir='mkdir -vp'
-alias gri='grep -i'
-alias lls='ls -o'
 export PATH="/usr/local/sbin:$PATH"
