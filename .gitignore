@@ -78,3 +78,4 @@ wheels/
 # Testing #
 ###########
 .cache/
+/.zsh_custom/themes
