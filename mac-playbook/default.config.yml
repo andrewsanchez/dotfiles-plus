@@ -39,6 +39,7 @@ homebrew_installed_packages:
   - tree
   - ssh-copy-id
   - shellcheck
+  - pandoc
 
 homebrew_taps:
   - homebrew/core
