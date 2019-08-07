@@ -40,6 +40,7 @@ homebrew_installed_packages:
   - ssh-copy-id
   - shellcheck
   - pandoc
+  - youtube-dl
 
 homebrew_taps:
   - homebrew/core
@@ -64,6 +65,7 @@ homebrew_cask_apps:
   - vagrant
   - mactex
   - libreoffice
+  - vlc
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
