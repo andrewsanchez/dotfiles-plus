@@ -41,6 +41,7 @@ homebrew_installed_packages:
   - shellcheck
   - pandoc
   - youtube-dl
+  - ispell
 
 homebrew_taps:
   - homebrew/core
