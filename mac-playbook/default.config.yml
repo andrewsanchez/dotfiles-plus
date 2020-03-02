@@ -19,7 +19,6 @@ dotfiles_files:
   - .zshrc
 
 homebrew_installed_packages:
-  # - ansible # Installed via Pip.
   - miniconda 
   - zsh
   - zsh-completions
