@@ -45,11 +45,9 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
-  #- d12frosted/emacs-plus
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  #- d12frosted/emacs-plus/emacs-plus
   - iterm2
   - pycharm
   - intellij-idea
@@ -61,8 +59,6 @@ homebrew_cask_apps:
   - karabiner-elements
   - dropbox
   - google-chrome
-  - virtualbox
-  - vagrant
   - mactex
   - libreoffice
   - vlc
