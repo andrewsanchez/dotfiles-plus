@@ -41,10 +41,12 @@ homebrew_installed_packages:
   - pandoc
   - youtube-dl
   - ispell
+  - emacs-plus
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - d12frosted/emacs-plus
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
