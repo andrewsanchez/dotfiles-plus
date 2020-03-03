@@ -46,6 +46,7 @@ homebrew_installed_packages:
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-fonts
   - d12frosted/emacs-plus
 
 homebrew_cask_appdir: /Applications
