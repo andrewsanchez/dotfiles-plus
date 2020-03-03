@@ -15,7 +15,7 @@ dotfiles_files:
   - .bash_aliases
   - .gitignore
   - .gitconfig
-  - spacemacs-layers/.spacemacs
+  - .spacemacs
   - .zshrc
 
 homebrew_installed_packages:
