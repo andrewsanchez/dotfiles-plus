@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/asanchez122/.oh-my-zsh"
+export ZSH="/Users/$USER/.oh-my-zsh"
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
