@@ -12,3 +12,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+. /Users/$USER/miniconda3/etc/profile.d/conda.sh
+conda activate
