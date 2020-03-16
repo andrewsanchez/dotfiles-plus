@@ -52,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 ZSH_CUSTOM=~/.zsh_custom
 
 plugins=(
-    common-aliases
+    common-aliases, vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
