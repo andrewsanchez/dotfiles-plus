@@ -75,3 +75,6 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 export PATH="/usr/local/sbin:$PATH"
+
+source "/Users/aas/.zsh_custom/themes/spaceship.zsh-theme"
+
