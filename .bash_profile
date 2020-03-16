@@ -16,3 +16,5 @@ it2prof() {
 }
 . /Users/$USER/miniconda3/etc/profile.d/conda.sh
 conda activate
+
+export PATH="$HOME/.cargo/bin:$PATH"
