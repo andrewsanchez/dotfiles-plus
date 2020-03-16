@@ -17,6 +17,7 @@ dotfiles_files:
   - .gitconfig
   - .spacemacs
   - .zshrc
+  - .zsh_custom
 
 homebrew_installed_packages:
   - miniconda 
