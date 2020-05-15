@@ -52,7 +52,7 @@ HYPHEN_INSENSITIVE="true"
 ZSH_CUSTOM=~/.zsh_custom
 
 plugins=(
-    common-aliases, vi-mode
+    git common-aliases vi-mode conda-zsh-completion
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,3 +96,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+autoload -U compinit && compinit
