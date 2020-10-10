@@ -1,8 +1,10 @@
 ---
 # TODO
 # Install spacemacs
+# Install oh my zsh
 # Use Alfred backup
 # Configure Karabiner
+# Configure keyboardmaestro
 # Customize .osx
 
 
@@ -26,29 +28,28 @@ dotfiles_files:
   - .zsh_custom
 
 homebrew_installed_packages:
-  - miniconda 
-  - zsh
-  - zsh-completions
   - autoconf
   - bash-completion
   - doxygen
-  - httpie
-  - sqlite
-  - node
+  - emacs-plus
   - git
   - gpg
-  - hub
-  - readline
-  - openssl
   - htop
-  - wget
-  - tree
-  - ssh-copy-id
-  - shellcheck
-  - pandoc
-  - youtube-dl
+  - httpie
+  - hub
   - ispell
-  - emacs-plus
+  - miniconda 
+  - node
+  - openssl
+  - pandoc
+  - readline
+  - shellcheck
+  - sqlite
+  - ssh-copy-id
+  - tree
+  - wget
+  - youtube-dl
+  - zsh-completions
 
 homebrew_taps:
   - homebrew/core
@@ -58,28 +59,34 @@ homebrew_taps:
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
-  - iterm2
-  - pycharm
-  - visual-studio-code
-  - copyq
-  - docker
-  - spotify
-  - keyboard-maestro
   - alfred
-  - karabiner-elements
-  - dropbox
-  - google-chrome
-  - mactex
-  - libreoffice
-  - vlc
-  - bitwarden
   - anki
-  - zulip
-  - slack
+  - bitwarden
+  - copyq
+  - discord
+  - docker
+  - dropbox
+  - flux
   - font-source-code-pro
-  - zoom
-  - skype
   - google-backup-and-sync
+  - google-chrome
+  - iterm2
+  - karabiner-elements
+  - keyboard-maestro
+  - libreoffice
+  - mactex
+  - pycharm
+  - skype
+  - slack
+  - spotify
+  - telegram
+  - vagrant
+  - virtualbox
+  - visual-studio-code
+  - vlc
+  - whatsapp
+  - zoom
+  - zulip
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
