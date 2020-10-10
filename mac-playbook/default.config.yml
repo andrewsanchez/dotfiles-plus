@@ -1,10 +1,16 @@
 ---
+# TODO
+# Install spacemacs
+# Use Alfred backup
+# Configure Karabiner
+# Customize .osx
+
+
 downloads: ~/.ansible-downloads/
 
 configure_dotfiles: yes
 configure_sudoers: no
 configure_terminal: no
-# TODO Enable this step after customizing .osx
 configure_osx: no
 
 dotfiles_repo: https://github.com/andrewsanchez/dotfiles-plus.git
