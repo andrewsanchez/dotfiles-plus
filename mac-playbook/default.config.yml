@@ -75,6 +75,7 @@ homebrew_cask_apps:
   - keyboard-maestro
   - libreoffice
   - mactex
+  - notion
   - pycharm
   - skype
   - slack
@@ -85,7 +86,7 @@ homebrew_cask_apps:
   - visual-studio-code
   - vlc
   - whatsapp
-  - zoom
+  - zoomus
   - zulip
 
 # See `geerlingguy.mas` role documentation for usage instructions.
