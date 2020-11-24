@@ -30,8 +30,10 @@ dotfiles_files:
 homebrew_installed_packages:
   - autoconf
   - bash-completion
+  - bitwarden-cli
   - doxygen
   - emacs-plus
+  - fd
   - git
   - gpg
   - htop
@@ -42,6 +44,7 @@ homebrew_installed_packages:
   - node
   - openssl
   - pandoc
+  - postgresql
   - readline
   - shellcheck
   - sqlite
