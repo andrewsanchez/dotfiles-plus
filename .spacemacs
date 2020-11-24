@@ -12,42 +12,42 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(typescript
-     javascript
+   '(auto-completion
+     autohotkey
+     better-defaults
      csv
-     rust
      (deft
-       :variables
+       deft-default-extension "org"
        deft-directory "~/Dropbox/org"
        deft-recursive t
        deft-use-filename-as-title t
        deft-use-filter-string-for-filename t
-       deft-default-extension "org"
        deft-ignore-file-regexp
        (concat "\\(?:"
                "archive\\.org\\'"
                "\\)"))
-     yaml
-     html
-     autohotkey
-     helm
-     auto-completion
-     better-defaults
+     docker
      emacs-lisp
      git
+     helm
+     html
+     javascript
      markdown
      org
+     python
+     rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-     themes-megapack
+     slack
      spell-checking
      syntax-checking
-     version-control
-     python
-     docker
-     vagrant
      terraform
+     themes-megapack
+     typescript
+     vagrant
+     version-control
+     yaml
 
      ;; Personal layers
      as-org
