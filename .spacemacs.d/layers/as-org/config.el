@@ -7,10 +7,11 @@
       as/views (concat (getenv "HOME") "/org/views/")
       as/gtd (concat as/org "gtd.org")
       as/journal (concat as/agenda "journal.org"))
+
 (setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
       org-todo-keywords
-      '((sequence "TODO" "|" "DONE"))
+      '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)"))
       org-refile-targets '((nil :maxlevel . 3)
                            (org-agenda-files :maxlevel . 3))
       org-outline-path-complete-in-steps nil
