@@ -16,7 +16,7 @@ values."
      autohotkey
      better-defaults
      csv
-     (deft
+     (deft :variables
        deft-default-extension "org"
        deft-directory "~/Dropbox/org"
        deft-recursive t
