@@ -1,10 +1,11 @@
 (require 'org-protocol)
 (add-to-list 'org-modules 'org-protocol)
-(setq as/org (concat (getenv "HOME") "/org/")
+(setq as/org (concat (getenv "HOME") "/Dropbox/org")
       as/agenda (concat as/org "agenda/")
       as/views (concat (getenv "HOME") "/org/views/")
-      as/gtd (concat as/org "gtd.org"))
-(setq org-default-notes-file "/Users/andrew/org/notes.org"
+      as/gtd (concat as/org "gtd.org")
+      as/journal (concat as/agenda "journal.org"))
+(setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
       org-todo-keywords
       '((sequence "TODO" "|" "DONE"))
@@ -52,11 +53,10 @@
          "* %a\n  %i" :empty-lines 1)
         ("n" "Note" entry (file+headline as/gtd "Notes")
          "* %? \n%U" :empty-lines 1)
-        ("j" "Journal" entry (file+datetree "/Users/andrew/org/agenda/journal.org")
+        ("j" "Journal" entry (file+datetree as/journal)
         "* %? \nEntered on %U\n")))
 
-(setq org-agenda-files
-      '("/Users/andrew/org/"))
+(setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
 (setq org-agenda-include-diary t)
 (setq org-tag-persistent-alist '(("work" . ?w)
                                  ("buy" . ?b)
