@@ -74,12 +74,7 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export PATH="/usr/local/sbin:$PATH"
-
-source "~/.zsh_custom/themes/spaceship.zsh-theme"
-
-# https://docs.gitignore.io/install/command-line
-function gi() { curl -sLw "\n" https://www.gitignore.io/api/\$@ ;}
+export PATH="/usr/local/sbin:$HOME/.local/bin:$PATH"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
