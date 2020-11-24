@@ -1,5 +1,7 @@
 (require 'org-protocol)
 (add-to-list 'org-modules 'org-protocol)
+
+;; Personal org-mode config variables
 (setq as/org (concat (getenv "HOME") "/Dropbox/org")
       as/agenda (concat as/org "agenda/")
       as/views (concat (getenv "HOME") "/org/views/")
@@ -40,21 +42,25 @@
 (setq org-capture-templates
       '(("t" "TODO" entry (file+headline as/gtd "Collect")
          "* TODO %? \n  %U" :empty-lines 1)
-        ("s" "Scheduled TODO" entry (file+headline as/gtd "Collect")
+
+        ("s" "TODO - Scheduled" entry (file+headline as/gtd "Collect")
          "* TODO %? \nSCHEDULED: %^t\n  %U" :empty-lines 1)
-        ("d" "Deadline" entry (file+headline as/gtd "Collect")
+
+        ("d" "TODO - Deadline" entry (file+headline as/gtd "Collect")
          "* TODO %? \n  DEADLINE: %^t" :empty-lines 1)
-        ("p" "Priority" entry (file+headline as/gtd "Collect")
-         "* TODO [#A] %? \n  SCHEDULED: %^t")
+
         ("a" "Appointment" entry (file+headline as/gtd "Collect")
          "* %? \n  %^t")
-        ;; Used with capture protocol (chrome bookmarklet)
-        ("b" "Bookmark" entry (file+headline as/gtd "Bookmarks")
-         "* %a\n  %i" :empty-lines 1)
+
         ("n" "Note" entry (file+headline as/gtd "Notes")
          "* %? \n%U" :empty-lines 1)
+
         ("j" "Journal" entry (file+datetree as/journal)
-        "* %? \nEntered on %U\n")))
+         "* %? \nEntered on %U\n")
+
+      ;; Used with capture protocol (chrome bookmarklet)
+      ("b" "Bookmark" entry (file+headline as/gtd "Bookmarks")
+       "* %a\n  %i" :empty-lines 1)))
 
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
 (setq org-agenda-include-diary t)
