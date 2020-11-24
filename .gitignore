@@ -78,4 +78,9 @@ wheels/
 # Testing #
 ###########
 .cache/
-/.zsh_custom/themes
+
+
+# ohmyzsh #
+###########
+/.zsh_custom/themes/
+/.zsh_custom/plugins/
