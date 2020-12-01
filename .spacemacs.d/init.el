@@ -18,7 +18,7 @@ values."
      csv
      (deft :variables
        deft-default-extension "org"
-       deft-directory "~/Dropbox/org"
+       deft-directory "~/Dropbox/org/"
        deft-recursive t
        deft-use-filename-as-title t
        deft-use-filter-string-for-filename t
