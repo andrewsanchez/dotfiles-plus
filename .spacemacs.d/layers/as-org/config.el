@@ -61,7 +61,7 @@
          "* %? \nEntered on %U\n")
 
       ;; Used with capture protocol (chrome bookmarklet)
-        ("b" "Bookmark" entry (file+headline (concat as/org "bookmarks.org") "Bookmarks")
+      ("b" "Bookmark" entry (file+headline as/gtd "Bookmarks")
        "* %a\n  %i" :empty-lines 1)))
 
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
