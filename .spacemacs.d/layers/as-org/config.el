@@ -96,25 +96,20 @@
 (setq org-columns-default-format "%60ITEM(Task) %10Effort(Estimation){:} %28SCHEDULED(Scheduled) %16DEADLINE(Deadline) %5CLOCKSUM(Clocked)")
 (setq org-agenda-custom-commands
       `(("." . "Agenda + category")
-
         (".a" "Current agenda without habits" agenda ""
          ((org-agenda-span 14)
           (org-agenda-category-filter-preset '("-habit")))
          (,(concat as/agenda "agenda.ics")
           ,(concat as/agenda "agenda.html")))
-
-        (".p" "Cap Lab Agenda" agenda ""
+        (".p" "PMI Agenda" agenda ""
          ((org-agenda-span 5)
-          (org-agenda-category-filter-preset '("+CAMS")))
-         (,(concat as/org "cap-lab/cap_lab_agenda.html")))
-
-        ;; ("f" "Fluent Forever"
-        ;;  ((tags-todo "category={FluentForever}"))
-        ;;  ((org-agenda-overriding-header ""))
-        ;;  (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
-
+          (org-agenda-category-filter-preset '("+PMI")))
+         (,(concat as/org "PMI/PMI_Dev_Plan.html")))
+        ("f" "Fluent Forever"
+         ((tags-todo "category={FluentForever}"))
+         ((org-agenda-overriding-header ""))
+         (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
         ("h" "Habits" agenda "" ((org-agenda-category-filter-preset '("+habit"))))
-
         ("A" "All TODOs" ((alltodo))
          ((org-agenda-overriding-header "All TODOs")
           (org-agenda-sorting-strategy '(priority-down)))
