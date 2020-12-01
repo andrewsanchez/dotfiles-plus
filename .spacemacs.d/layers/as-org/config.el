@@ -2,11 +2,11 @@
 (add-to-list 'org-modules 'org-protocol)
 
 ;; Personal org-mode config variables
-(setq as/org (concat (getenv "HOME") "/Dropbox/org")
+(setq as/org (concat (getenv "HOME") "/Dropbox/org/")
       as/agenda (concat as/org "agenda/")
-      as/views (concat (getenv "HOME") "/org/views/")
+      as/views (concat as/org "views/")
       as/gtd (concat as/org "gtd.org")
-      as/journal (concat as/agenda "journal.org"))
+      as/journal (concat as/org "journal.org"))
 
 (setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
@@ -61,7 +61,7 @@
          "* %? \nEntered on %U\n")
 
       ;; Used with capture protocol (chrome bookmarklet)
-      ("b" "Bookmark" entry (file+headline as/gtd "Bookmarks")
+        ("b" "Bookmark" entry (file+headline (concat as/org "bookmarks.org") "Bookmarks")
        "* %a\n  %i" :empty-lines 1)))
 
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
@@ -96,25 +96,29 @@
 (setq org-columns-default-format "%60ITEM(Task) %10Effort(Estimation){:} %28SCHEDULED(Scheduled) %16DEADLINE(Deadline) %5CLOCKSUM(Clocked)")
 (setq org-agenda-custom-commands
       `(("." . "Agenda + category")
+
         (".a" "Current agenda without habits" agenda ""
          ((org-agenda-span 14)
           (org-agenda-category-filter-preset '("-habit")))
          (,(concat as/agenda "agenda.ics")
           ,(concat as/agenda "agenda.html")))
-        (".p" "PMI Agenda" agenda ""
+
+        (".p" "Cap Lab Agenda" agenda ""
          ((org-agenda-span 5)
-          (org-agenda-category-filter-preset '("+PMI")))
-         (,(concat as/org "PMI/PMI_Dev_Plan.html")))
-        ("f" "Fluent Forever"
-         ((tags-todo "category={FluentForever}"))
-         ((org-agenda-overriding-header ""))
-         (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
+          (org-agenda-category-filter-preset '("+CAMS")))
+         (,(concat as/org "cap-lab/cap_lab_agenda.html")))
+
+        ;; ("f" "Fluent Forever"
+        ;;  ((tags-todo "category={FluentForever}"))
+        ;;  ((org-agenda-overriding-header ""))
+        ;;  (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
+
         ("h" "Habits" agenda "" ((org-agenda-category-filter-preset '("+habit"))))
+
         ("A" "All TODOs" ((alltodo))
          ((org-agenda-overriding-header "All TODOs")
           (org-agenda-sorting-strategy '(priority-down)))
          ,(concat as/agenda "all.html"))))
 
-(setq 
- org-export-with-toc nil
- org-export-with-section-numbers nil)
+(setq org-export-with-toc nil
+      org-export-with-section-numbers nil)
