@@ -12,11 +12,12 @@
       org-hide-leading-stars t
       org-todo-keywords
       '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)"))
-      org-refile-targets '((nil :maxlevel . 3)
-                           (org-agenda-files :maxlevel . 3))
+      org-refile-targets '((nil :maxlevel . 2)
+                           (org-agenda-files :maxlevel . 2))
       org-outline-path-complete-in-steps nil
       org-completion-use-ido nil
       org-refile-use-outline-path t)
+
 (defun as/verify-refile-target ()
   "Exclude todo keywords with a done state from refile targets"
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
