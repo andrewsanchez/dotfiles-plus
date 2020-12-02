@@ -20,6 +20,7 @@ homebrew_installed_packages:
   - autoconf
   - bash-completion
   - bitwarden-cli
+  - docker-compose
   - doxygen
   - emacs-plus
   - fd
@@ -83,6 +84,7 @@ homebrew_cask_apps:
   - vlc
   - whatsapp
   - zoom
+  - xquartz
   - zulip
 
 # See `geerlingguy.mas` role documentation for usage instructions.
