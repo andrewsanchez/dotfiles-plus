@@ -1,13 +1,4 @@
 ---
-# TODO
-# Install spacemacs
-# Install oh my zsh
-# Use Alfred backup
-# Configure Karabiner
-# Configure keyboardmaestro
-# Customize .osx
-
-
 downloads: ~/.ansible-downloads/
 
 configure_dotfiles: yes
@@ -44,6 +35,7 @@ homebrew_installed_packages:
   - pandoc
   - postgresql
   - readline
+  - rustup-init
   - shellcheck
   - sqlite
   - ssh-copy-id
