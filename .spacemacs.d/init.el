@@ -12,7 +12,8 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(auto-completion
+   '(nginx
+     auto-completion
      autohotkey
      better-defaults
      csv
