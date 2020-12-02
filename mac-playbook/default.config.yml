@@ -19,11 +19,9 @@ dotfiles_repo: https://github.com/andrewsanchez/dotfiles-plus.git
 dotfiles_repo_accept_hostkey: yes
 dotfiles_repo_local_destination: ~/Projects/dotfiles-plus
 dotfiles_files:
-  - .bash_profile
-  - .bash_aliases
   - .gitignore
   - .gitconfig
-  - .spacemacs
+  - .spacemacs.d
   - .zshrc
   - .zsh_custom
 
@@ -49,6 +47,7 @@ homebrew_installed_packages:
   - shellcheck
   - sqlite
   - ssh-copy-id
+  - tmux
   - tree
   - wget
   - youtube-dl
@@ -91,7 +90,7 @@ homebrew_cask_apps:
   - visual-studio-code
   - vlc
   - whatsapp
-  - zoomus
+  - zoom
   - zulip
 
 # See `geerlingguy.mas` role documentation for usage instructions.
