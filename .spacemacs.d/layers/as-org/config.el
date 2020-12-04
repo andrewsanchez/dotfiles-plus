@@ -62,9 +62,15 @@
         ("j" "Journal" entry (file+datetree as/journal)
          "* %? \nEntered on %U\n")
 
-      ;; Used with capture protocol (chrome bookmarklet)
-      ("b" "Bookmark" entry (file+headline as/gtd "Bookmarks")
-       "* %a\n  %i" :empty-lines 1)))
+      ;; Used with capture protocol Chrome extension
+        ("p" "Protocol" entry (file+headline as/bookmarks "Collect")
+         "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+        ("L" "Protocol Link" entry (file+headline as/bookmarks "Inbox")
+         "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")))
+
+(defun transform-square-brackets-to-round-ones(string-to-transform)
+  "Transforms [ into ( and ] into ), other chars left unchanged."
+  (concat (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
 
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
 (setq org-agenda-include-diary t)
