@@ -6,7 +6,9 @@
       as/agenda (concat as/org "agenda/")
       as/views (concat as/org "views/")
       as/gtd (concat as/org "gtd.org")
-      as/journal (concat as/org "journal.org"))
+      as/journal (concat as/org "journal.org")
+      as/bookmarks (concat as/org "bookmarks.org")
+      org-directory as/org)
 
 (setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
