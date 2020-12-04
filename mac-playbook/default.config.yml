@@ -42,6 +42,7 @@ homebrew_installed_packages:
   - ssh-copy-id
   - tmux
   - tree
+  - watch
   - wget
   - youtube-dl
   - zsh-completions
