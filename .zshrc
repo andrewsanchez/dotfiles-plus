@@ -67,3 +67,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 autoload -U compinit && compinit
+
+eval "$(direnv hook zsh)"

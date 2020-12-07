@@ -60,6 +60,7 @@ homebrew_cask_apps:
   - anki
   - bitwarden
   - copyq
+  - direnv
   - discord
   - docker
   - dropbox
