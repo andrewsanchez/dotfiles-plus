@@ -58,6 +58,7 @@ homebrew_cask_apps:
   - alfred
   - android-file-transfer
   - anki
+  - awscli
   - bitwarden
   - copyq
   - direnv
