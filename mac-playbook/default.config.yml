@@ -22,7 +22,7 @@ homebrew_installed_packages:
   - bitwarden-cli
   - docker-compose
   - doxygen
-  - emacs-plus
+  - emacs-plus@28
   - fd
   - git
   - gpg
