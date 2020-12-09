@@ -1,7 +1,3 @@
-(require 'org-protocol)
-(add-to-list 'org-modules 'org-protocol)
-
-;; Personal org-mode config variables
 (setq as/org (concat (getenv "HOME") "/Dropbox/org/")
       as/agenda (concat as/org "agenda/")
       as/views (concat as/org "views/")
@@ -19,29 +15,6 @@
       org-outline-path-complete-in-steps nil
       org-completion-use-ido nil
       org-refile-use-outline-path t)
-
-(defun as/verify-refile-target ()
-  "Exclude todo keywords with a done state from refile targets"
-  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
-(setq org-refile-target-verify-function 'as/verify-refile-target
-      org-refile-allow-creating-parent-nodes 'confirm
-      org-src-fontify-natively t
-      org-duration-format (quote h:mm))
-;; (add-to-list 'org-modules 'org-habit)
-
-(defun as/tangle-dotfiles ()
-  "If the current file matches 'as-.+org$', tangle blocks."
-  (when (string-match "as-.+org$" (buffer-file-name))
-    (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)))
-(add-hook 'after-save-hook #'as/tangle-dotfiles)
-(setq org-src-window-setup (quote current-window)
-      org-confirm-babel-evaluate nil)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)
-   (emacs-lisp . t)
-   (shell . t)))
 
 (setq org-capture-templates
       '(("t" "TODO" entry (file+headline as/gtd "Collect")
@@ -68,10 +41,6 @@
         ("L" "Protocol Link" entry (file+headline as/bookmarks "Inbox")
          "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")))
 
-(defun transform-square-brackets-to-round-ones(string-to-transform)
-  "Transforms [ into ( and ] into ), other chars left unchanged."
-  (concat (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
-
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
 (setq org-agenda-include-diary t)
 (setq org-tag-persistent-alist '(("work" . ?w)
@@ -82,20 +51,6 @@
                                  ("finance" . ?f)
                                  ("read" . ?r)
                                  ("school" . ?s)))
-
-(defun org-archive-done-tasks-agenda ()
-  (interactive)
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-     (setq org-map-continue-from (outline-previous-heading))) "/DONE" 'agenda))
-
-(defun org-archive-done-tasks-buffer ()
-  (interactive)
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-    (setq org-map-continue-from (outline-previous-heading))) "/DONE" 'file))
 
 (setq org-agenda-sorting-strategy
       '(deadline-up todo-state-up timestamp-down priority-down))
