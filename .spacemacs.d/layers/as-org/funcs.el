@@ -12,6 +12,7 @@
     (org-babel-tangle)
     (message "%s tangled" buffer-file-name)))
 (add-hook 'after-save-hook #'as/tangle-dotfiles)
+
 (setq org-src-window-setup (quote current-window)
       org-confirm-babel-evaluate nil)
 (org-babel-do-load-languages

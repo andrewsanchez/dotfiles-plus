@@ -6,7 +6,9 @@
   (use-package org-drill
     :defer t))
 
+
+(defun as-org/pre-init-org ()
+  (spacemacs|use-package-add-hook org :post-config (require 'org-roam-protocol)))
+
 (defun as-org/post-init-org ()
-  (require 'org-protocol)
   (add-to-list 'org-modules 'org-protocol))
-  ;; (add-to-list 'org-modules 'org-habit))

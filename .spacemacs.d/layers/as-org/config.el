@@ -2,9 +2,12 @@
       as/agenda (concat as/org "agenda/")
       as/views (concat as/org "views/")
       as/gtd (concat as/org "gtd.org")
-      as/journal (concat as/org "journal.org")
+      as/journal (concat as/org "journal/")
       as/bookmarks (concat as/org "bookmarks.org")
       org-directory as/org)
+
+;; Open org files in same window
+(setq org-link-frame-setup '((file . find-file)))
 
 (setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
@@ -13,8 +16,21 @@
       org-refile-targets '((nil :maxlevel . 2)
                            (org-agenda-files :maxlevel . 2))
       org-outline-path-complete-in-steps nil
+      org-refile-allow-creating-parent-nodes 'confirm
       org-completion-use-ido nil
-      org-refile-use-outline-path t)
+      org-refile-use-outline-path 'file)
+
+(setq org-roam-directory as/org
+      org-roam-db-location (concat as/org ".roam/" "org-roam.db")
+      org-roam-dailies-directory (concat as/org "org-roam-dailies/")
+      org-journal-dir as/journal)
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         #'org-roam-capture--get-point
+         "* %?"
+         :file-name "org-roam-dailies/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>\n\n")))
 
 (setq org-capture-templates
       '(("t" "TODO" entry (file+headline as/gtd "Collect")
@@ -32,8 +48,8 @@
         ("n" "Note" entry (file+headline as/gtd "Notes")
          "* %? \n%U" :empty-lines 1)
 
-        ("j" "Journal" entry (file+datetree as/journal)
-         "* %? \nEntered on %U\n")
+        ;; ("j" "Journal" entry (file+datetree as/journal)
+        ;;  "* %? \nEntered on %U\n")
 
       ;; Used with capture protocol Chrome extension
         ("p" "Protocol" entry (file+headline as/bookmarks "Collect")

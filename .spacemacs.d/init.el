@@ -36,7 +36,9 @@ values."
      html
      javascript
      markdown
-     org
+     (org :variables
+          org-enable-roam-support t
+          org-enable-org-journal-support t)
      python
      rust
      (shell :variables
@@ -53,8 +55,7 @@ values."
      yaml
 
      ;; Personal layers
-     as-org
-     )
+     as-org)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
