@@ -14,6 +14,8 @@ values."
    dotspacemacs-configuration-layers
    '(nginx
      auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      autohotkey
      better-defaults
      csv
