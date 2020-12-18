@@ -262,13 +262,11 @@ values."
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
    ;; This variable can also be set to a property list for finer control:
-   dotspacemacs-line-numbers '(:relative nil
+   dotspacemacs-line-numbers '(:relative relative
      :disabled-for-modes dired-mode
                          doc-view-mode
                          pdf-view-mode
                          :size-limit-kb 1000)
-   ;; (default nil)
-
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
