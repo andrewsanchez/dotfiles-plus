@@ -307,7 +307,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (server-start)
-  )
+  (setq insert-directory-program "/usr/local/Cellar/coreutils/8.32/libexec/gnubin/ls"))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
