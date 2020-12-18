@@ -12,9 +12,7 @@ values."
    dotspacemacs-ask-for-lazy-installation t
    dotspacemacs-configuration-layer-path '()
    dotspacemacs-configuration-layers
-   '(nginx
-     auto-completion
-     (auto-completion :variables
+   '((auto-completion :variables
                       auto-completion-enable-snippets-in-popup t)
      autohotkey
      better-defaults
@@ -36,17 +34,21 @@ values."
      html
      javascript
      markdown
+     nginx
      (org :variables
           org-enable-roam-support t
           org-enable-org-journal-support t)
+     protobuf
      python
      rust
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
      slack
+     (spacemacs-layouts)
      spell-checking
      syntax-checking
+     sql
      terraform
      themes-megapack
      typescript
@@ -61,7 +63,8 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(magit-section
-                                      helm-rg)
+                                      helm-rg
+                                      (mermaid-mode))
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
