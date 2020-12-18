@@ -20,12 +20,14 @@ homebrew_installed_packages:
   - autoconf
   - bash-completion
   - bitwarden-cli
+  - coreutils
   - docker-compose
   - doxygen
   - emacs-plus@28
   - fd
   - git
   - gpg
+  - graphviz
   - htop
   - httpie
   - hub
