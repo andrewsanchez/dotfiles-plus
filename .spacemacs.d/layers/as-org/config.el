@@ -1,14 +1,22 @@
-(require 'org-protocol)
-(add-to-list 'org-modules 'org-protocol)
-
-;; Personal org-mode config variables
 (setq as/org (concat (getenv "HOME") "/Dropbox/org/")
       as/agenda (concat as/org "agenda/")
       as/views (concat as/org "views/")
-      as/gtd (concat as/org "gtd.org")
-      as/journal (concat as/org "journal.org")
+      as/inbox (concat as/org "inbox.org")
+      as/journal (concat as/org "journal/")
       as/bookmarks (concat as/org "bookmarks.org")
+      as/dailies (concat as/org "org-roam-dailies/")
       org-directory as/org)
+
+
+(defun as/add-new-org-files-to-agenda ()
+  "If the current file is in 'as/config, tangle blocks"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name)) as/dailies)
+    (org-agenda-file-to-front)
+    (message "%s added to agenda." buffer-file-name)))
+(add-hook 'after-save-hook #'as/add-new-org-files-to-agenda)
+
+;; Open org files in same window
+(setq org-link-frame-setup '((file . find-file)))
 
 (setq org-default-notes-file (concat as/org "notes.org")
       org-hide-leading-stars t
@@ -17,31 +25,40 @@
       org-refile-targets '((nil :maxlevel . 2)
                            (org-agenda-files :maxlevel . 2))
       org-outline-path-complete-in-steps nil
-      org-completion-use-ido nil
-      org-refile-use-outline-path t)
-
-(defun as/verify-refile-target ()
-  "Exclude todo keywords with a done state from refile targets"
-  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
-(setq org-refile-target-verify-function 'as/verify-refile-target
       org-refile-allow-creating-parent-nodes 'confirm
-      org-src-fontify-natively t
-      org-duration-format (quote h:mm))
-;; (add-to-list 'org-modules 'org-habit)
+      org-completion-use-ido nil
+      org-refile-use-outline-path 'file)
 
-(defun as/tangle-dotfiles ()
-  "If the current file matches 'as-.+org$', tangle blocks."
-  (when (string-match "as-.+org$" (buffer-file-name))
-    (org-babel-tangle)
-    (message "%s tangled" buffer-file-name)))
-(add-hook 'after-save-hook #'as/tangle-dotfiles)
-(setq org-src-window-setup (quote current-window)
-      org-confirm-babel-evaluate nil)
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)
-   (emacs-lisp . t)
-   (shell . t)))
+(setq org-roam-directory as/org
+      org-roam-db-location (concat as/org ".roam/" "org-roam.db")
+      org-roam-dailies-directory (concat as/org "org-roam-dailies/")
+      org-journal-dir as/journal)
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         #'org-roam-capture--get-point
+         "%?"
+         :file-name "org-roam-dailies/%<%Y-%m-%d>"
+         :head "#+title: %<%Y-%m-%d>
+#+roam_tags:daily
+* Priorities
+* Daily Tasks
+** TODO Plan the day
+** TODO Anki - Process and Review Notes
+** TODO QIIME 2 Forum
+* Exercises
+* Review
+** What worked well?
+** Where did I get stuck?
+** What did I learn?"
+         )))
+
+(setq org-roam-capture-templates
+      '(("t" "default" plain (function org-roam--capture-get-point)
+         "%?"
+         :file-name "%(format-time-string \"%Y-%m-%d--%H-%M-%SZ--${slug}\" (current-time) t)"
+         :head "#+title: ${title}\n"
+         :unnarrowed t)))
 
 (setq org-capture-templates
       '(("t" "TODO" entry (file+headline as/gtd "Collect")
@@ -59,18 +76,14 @@
         ("n" "Note" entry (file+headline as/gtd "Notes")
          "* %? \n%U" :empty-lines 1)
 
-        ("j" "Journal" entry (file+datetree as/journal)
-         "* %? \nEntered on %U\n")
+        ;; ("j" "Journal" entry (file+datetree as/journal)
+        ;;  "* %? \nEntered on %U\n")
 
       ;; Used with capture protocol Chrome extension
         ("p" "Protocol" entry (file+headline as/bookmarks "Collect")
          "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
         ("L" "Protocol Link" entry (file+headline as/bookmarks "Inbox")
          "* %? [[%:link][%(transform-square-brackets-to-round-ones \"%:description\")]]\n")))
-
-(defun transform-square-brackets-to-round-ones(string-to-transform)
-  "Transforms [ into ( and ] into ), other chars left unchanged."
-  (concat (mapcar #'(lambda (c) (if (equal c ?[) ?\( (if (equal c ?]) ?\) c))) string-to-transform)))
 
 (setq org-agenda-files (directory-files-recursively as/org "\\.org$"))
 (setq org-agenda-include-diary t)
@@ -83,41 +96,16 @@
                                  ("read" . ?r)
                                  ("school" . ?s)))
 
-(defun org-archive-done-tasks-agenda ()
-  (interactive)
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-     (setq org-map-continue-from (outline-previous-heading))) "/DONE" 'agenda))
-
-(defun org-archive-done-tasks-buffer ()
-  (interactive)
-  (org-map-entries
-   (lambda ()
-     (org-archive-subtree)
-    (setq org-map-continue-from (outline-previous-heading))) "/DONE" 'file))
-
-(setq org-agenda-sorting-strategy
-      '(deadline-up todo-state-up timestamp-down priority-down))
-
 (setq org-deadline-warning-days 14)
 (setq org-columns-default-format "%60ITEM(Task) %10Effort(Estimation){:} %28SCHEDULED(Scheduled) %16DEADLINE(Deadline) %5CLOCKSUM(Clocked)")
 (setq org-agenda-custom-commands
       `(("." . "Agenda + category")
         (".a" "Current agenda without habits" agenda ""
          ((org-agenda-span 14)
-          (org-agenda-category-filter-preset '("-habit")))
+          (org-agenda-category-filter-preset '("-habit"))
+          (org-overriding-columns-format "%DEADLINE"))
          (,(concat as/agenda "agenda.ics")
           ,(concat as/agenda "agenda.html")))
-        (".p" "PMI Agenda" agenda ""
-         ((org-agenda-span 5)
-          (org-agenda-category-filter-preset '("+PMI")))
-         (,(concat as/org "PMI/PMI_Dev_Plan.html")))
-        ("f" "Fluent Forever"
-         ((tags-todo "category={FluentForever}"))
-         ((org-agenda-overriding-header ""))
-         (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
-        ("h" "Habits" agenda "" ((org-agenda-category-filter-preset '("+habit"))))
         ("A" "All TODOs" ((alltodo))
          ((org-agenda-overriding-header "All TODOs")
           (org-agenda-sorting-strategy '(priority-down)))

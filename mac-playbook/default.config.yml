@@ -20,12 +20,14 @@ homebrew_installed_packages:
   - autoconf
   - bash-completion
   - bitwarden-cli
+  - coreutils
   - docker-compose
   - doxygen
-  - emacs-plus
+  - emacs-plus@28
   - fd
   - git
   - gpg
+  - graphviz
   - htop
   - httpie
   - hub
@@ -58,8 +60,10 @@ homebrew_cask_apps:
   - alfred
   - android-file-transfer
   - anki
+  - awscli
   - bitwarden
   - copyq
+  - direnv
   - discord
   - docker
   - dropbox

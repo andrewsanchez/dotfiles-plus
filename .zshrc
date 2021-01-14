@@ -49,7 +49,7 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export PATH="/usr/local/sbin:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/sbin:$HOME/.local/bin:$PATH:$HOME/node_modules/.bin"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -67,3 +67,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 autoload -U compinit && compinit
+
+eval "$(direnv hook zsh)"
