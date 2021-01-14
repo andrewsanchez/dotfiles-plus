@@ -37,7 +37,9 @@ values."
      nginx
      (org :variables
           org-enable-roam-support t
-          org-enable-org-journal-support t)
+          org-enable-org-journal-support t
+          org-modules '(habits))
+     pandoc
      protobuf
      python
      rust
@@ -57,14 +59,15 @@ values."
      yaml
 
      ;; Personal layers
-     as-org)
+     as-org
+     anki)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(magit-section
                                       helm-rg
-                                      (mermaid-mode))
+                                      mermaid-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -320,6 +323,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq projectile-require-project-root nil)
   (setq mermaid-mmdc-location "~/node_modules/.bin/mmdc")
+  (setq auto-revert-mode t)
   (add-hook 'after-init-hook 'org-roam-mode)
   )
 
