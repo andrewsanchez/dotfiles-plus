@@ -83,18 +83,10 @@
       `(("." . "Agenda + category")
         (".a" "Current agenda without habits" agenda ""
          ((org-agenda-span 14)
-          (org-agenda-category-filter-preset '("-habit")))
+          (org-agenda-category-filter-preset '("-habit"))
+          (org-overriding-columns-format "%DEADLINE"))
          (,(concat as/agenda "agenda.ics")
           ,(concat as/agenda "agenda.html")))
-        (".p" "PMI Agenda" agenda ""
-         ((org-agenda-span 5)
-          (org-agenda-category-filter-preset '("+PMI")))
-         (,(concat as/org "PMI/PMI_Dev_Plan.html")))
-        ("f" "Fluent Forever"
-         ((tags-todo "category={FluentForever}"))
-         ((org-agenda-overriding-header ""))
-         (,(concat as/org "Fluent-Forever/Fluent-Forever.html")))
-        ("h" "Habits" agenda "" ((org-agenda-category-filter-preset '("+habit"))))
         ("A" "All TODOs" ((alltodo))
          ((org-agenda-overriding-header "All TODOs")
           (org-agenda-sorting-strategy '(priority-down)))
