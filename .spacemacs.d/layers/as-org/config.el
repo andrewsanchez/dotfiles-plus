@@ -37,9 +37,28 @@
 (setq org-roam-dailies-capture-templates
       '(("d" "default" entry
          #'org-roam-capture--get-point
-         "* %?"
+         "%?"
          :file-name "org-roam-dailies/%<%Y-%m-%d>"
-         :head "#+title: %<%Y-%m-%d>\n\n")))
+         :head "#+title: %<%Y-%m-%d>
+#+roam_tags:daily
+* Priorities
+* Daily Tasks
+** TODO Plan the day
+** TODO Anki - Process and Review Notes
+** TODO QIIME 2 Forum
+* Exercises
+* Review
+** What worked well?
+** Where did I get stuck?
+** What did I learn?"
+         )))
+
+(setq org-roam-capture-templates
+      '(("t" "default" plain (function org-roam--capture-get-point)
+         "%?"
+         :file-name "%(format-time-string \"%Y-%m-%d--%H-%M-%SZ--${slug}\" (current-time) t)"
+         :head "#+title: ${title}\n"
+         :unnarrowed t)))
 
 (setq org-capture-templates
       '(("t" "TODO" entry (file+headline as/gtd "Collect")
