@@ -6,6 +6,14 @@
       as/bookmarks (concat as/org "bookmarks.org")
       org-directory as/org)
 
+
+(defun as/add-new-org-files-to-agenda ()
+  "If the current file is in 'as/config, tangle blocks"
+  (when (equal (file-name-directory (directory-file-name buffer-file-name)) as/dailies)
+    (org-agenda-file-to-front)
+    (message "%s added to agenda." buffer-file-name)))
+(add-hook 'after-save-hook #'as/add-new-org-files-to-agenda)
+
 ;; Open org files in same window
 (setq org-link-frame-setup '((file . find-file)))
 
