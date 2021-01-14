@@ -1,9 +1,10 @@
 (setq as/org (concat (getenv "HOME") "/Dropbox/org/")
       as/agenda (concat as/org "agenda/")
       as/views (concat as/org "views/")
-      as/gtd (concat as/org "gtd.org")
+      as/inbox (concat as/org "inbox.org")
       as/journal (concat as/org "journal/")
       as/bookmarks (concat as/org "bookmarks.org")
+      as/dailies (concat as/org "org-roam-dailies/")
       org-directory as/org)
 
 
