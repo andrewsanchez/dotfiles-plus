@@ -77,9 +77,6 @@
                                  ("read" . ?r)
                                  ("school" . ?s)))
 
-(setq org-agenda-sorting-strategy
-      '(deadline-up todo-state-up timestamp-down priority-down))
-
 (setq org-deadline-warning-days 14)
 (setq org-columns-default-format "%60ITEM(Task) %10Effort(Estimation){:} %28SCHEDULED(Scheduled) %16DEADLINE(Deadline) %5CLOCKSUM(Clocked)")
 (setq org-agenda-custom-commands
