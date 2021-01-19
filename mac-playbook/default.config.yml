@@ -124,3 +124,82 @@ pip_packages:
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
+
+qiime_repos:
+  - action-library-packaging
+  - busywork
+  - conda-channel-resource
+  - data302
+  - dev-docs
+  - docs
+  - library
+  - library
+  - linux-worker-docker
+  - q2-alignment
+  - q2-composition
+  - q2-covid-19
+  - q2-cutadapt
+  - q2-cutadapt
+  - q2-dada2
+  - q2-deblur
+  - q2-demux
+  - q2-diversity
+  - q2-diversity-lib
+  - q2-emperor
+  - q2-feature-classifier
+  - q2-feature-classifier
+  - q2-feature-table
+  - q2-feature-table
+  - q2-fragment-insertion
+  - q2-gneiss
+  - q2-longitudinal
+  - q2-metadata
+  - q2-phylogeny
+  - q2-quality-control
+  - q2-quality-filter
+  - q2-sample-classifier
+  - q2-shogun
+  - q2-taxa
+  - q2-types
+  - q2-vsearch
+  - q2cli
+  - q2cli
+  - q2cwl
+  - q2galaxy
+  - q2lint
+  - q2studio
+  - q2templates
+  - q2view
+  - qiime2
+  - qiime2.github.io
+  - sphinx-qiime2-theme
+  - static-site-infrastructure
+  - vm-playbooks
+
+anki_repos:
+  - Anki-Android
+  - Anki-Simulator
+  - AnkiLPCG
+  - AnkiPandas
+  - Beautify-Anki
+  - CrowdAnki
+  - Obsidian_to_Anki
+  - Spanki
+  - anki
+  - anki-addons
+  - anki-airtable
+  - anki-connect
+  - anki-docs
+  - anki-manual
+  - anki-palace-butler
+  - anki-school
+  - anki__feed_to_anki
+  - anki_collab
+  - anki_collab
+  - awesome-anki
+  - bundled-add-ons
+  - chrome-anki-quick-adder
+  - genanki
+  - lsankidb
+  - pytest-anki
+  - tag-near-duplicates

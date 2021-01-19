@@ -1,0 +1,17 @@
+---
+
+- name: Create dest
+  file:
+    path: "~/qiime"
+    state: directory
+
+- name: Clone QIIME 2 repositories.
+  git:
+    repo: "https://github.com/andrewsanchez/{{ item }}.git"
+    dest: "~/qiime/{{ item }}"
+    accept_hostkey: yes
+    version: master
+  become: false
+  tags:
+    - "qiime"
+  loop: "{{ qiime_repos }}"

@@ -1,0 +1,17 @@
+---
+
+- name: Create dest
+  file:
+    path: "~/anki"
+    state: directory
+
+- name: Clone Anki repositories.
+  git:
+    repo: "https://github.com/andrewsanchez/{{ item }}.git"
+    dest: "~/anki/{{ item }}"
+    accept_hostkey: yes
+    version: master
+  become: false
+  tags:
+    - "anki"
+  loop: "{{ anki_repos }}"
