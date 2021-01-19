@@ -18,13 +18,16 @@ dotfiles_files:
 
 homebrew_installed_packages:
   - autoconf
+  - awscli
   - bash-completion
   - bitwarden-cli
   - coreutils
+  - direnv
   - docker-compose
   - doxygen
   - emacs-plus@28
   - fd
+  - fzf
   - git
   - gpg
   - graphviz
@@ -38,6 +41,7 @@ homebrew_installed_packages:
   - pandoc
   - postgresql
   - readline
+  - ripgrep
   - rustup-init
   - shellcheck
   - sqlite
@@ -60,10 +64,8 @@ homebrew_cask_apps:
   - alfred
   - android-file-transfer
   - anki
-  - awscli
   - bitwarden
   - copyq
-  - direnv
   - discord
   - docker
   - dropbox
