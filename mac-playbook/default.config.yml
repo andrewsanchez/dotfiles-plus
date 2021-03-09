@@ -128,6 +128,7 @@ post_provision_tasks: []
 
 qiime_repos:
   - action-library-packaging
+  - An-Introduction-To-Applied-Bioinformatics
   - busywork
   - conda-channel-resource
   - data302
@@ -174,6 +175,7 @@ qiime_repos:
   - qiime2
   - qiime2.github.io
   - sphinx-qiime2-theme
+  - environment-files
   - static-site-infrastructure
   - vm-playbooks
 
