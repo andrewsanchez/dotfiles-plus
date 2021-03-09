@@ -50,8 +50,6 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-export PATH="/usr/local/sbin:$HOME/.local/bin:$PATH:$HOME/node_modules/.bin"
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -70,3 +68,6 @@ unset __conda_setup
 autoload -U compinit && compinit
 
 eval "$(direnv hook zsh)"
+
+# Homebrew's sbin
+export PATH="/usr/local/sbin:$HOME/usr/bin:$PATH"
