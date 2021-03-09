@@ -10,7 +10,7 @@ dotfiles_repo: https://github.com/andrewsanchez/dotfiles-plus.git
 dotfiles_repo_accept_hostkey: yes
 dotfiles_repo_local_destination: ~/Projects/dotfiles-plus
 dotfiles_files:
-  - .gitignore
+  - .gitignore_global
   - .gitconfig
   - .spacemacs.d
   - .zshrc
