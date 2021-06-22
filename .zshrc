@@ -84,3 +84,4 @@ export NVM_DIR="$HOME/.nvm"
 # https://discourse.brew.sh/t/why-was-with-default-names-removed/4405/2
 # for details
 alias grep='ggrep'
+export GPG_TTY=$(tty)
