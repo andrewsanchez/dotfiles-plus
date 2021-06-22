@@ -31,6 +31,7 @@ homebrew_installed_packages:
   - git
   - gpg
   - graphviz
+  - grep
   - htop
   - httpie
   - hub
@@ -59,6 +60,7 @@ homebrew_taps:
   - homebrew/cask
   - homebrew/cask-fonts
   - d12frosted/emacs-plus
+  - bazelbuild/tap
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
@@ -122,6 +124,7 @@ npm_packages:
 pip_packages:
   - name: isort
   - name: black
+  - name: flake8
   - name: importmagic
   - name: epc
 
