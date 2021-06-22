@@ -12,7 +12,6 @@ dotfiles_repo_local_destination: ~/Projects/dotfiles-plus
 dotfiles_files:
   - .gitignore_global
   - .gitconfig
-  - .spacemacs.d
   - .zshrc
   - .zsh_custom
 
@@ -20,6 +19,7 @@ homebrew_installed_packages:
   - autoconf
   - awscli
   - bash-completion
+  - bazel
   - bitwarden-cli
   - coreutils
   - direnv
@@ -36,7 +36,7 @@ homebrew_installed_packages:
   - hub
   - ispell
   - miniconda 
-  - node
+  - nvm
   - openssl
   - pandoc
   - postgresql
@@ -50,6 +50,7 @@ homebrew_installed_packages:
   - tree
   - watch
   - wget
+  - yarn
   - youtube-dl
   - zsh-completions
 
@@ -70,7 +71,9 @@ homebrew_cask_apps:
   - docker
   - dropbox
   - evernote
+  - firefox
   - flux
+  - svn # required for font-source-code-pro
   - font-source-code-pro
   - google-backup-and-sync
   - google-chrome
