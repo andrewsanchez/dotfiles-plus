@@ -26,6 +26,7 @@ ZSH_CUSTOM=~/.zsh_custom
 plugins=(
     git
     common-aliases
+    docker-compose
     vi-mode
     conda-zsh-completion
 )
@@ -71,3 +72,15 @@ eval "$(direnv hook zsh)"
 
 # Homebrew's sbin
 export PATH="/usr/local/sbin:$HOME/usr/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+# load nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+# nvm bash_completion
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
+
+# This is for spacemacs searching with grep
+# See https://github.com/syl20bnr/spacemacs#install-spacemacs and
+# https://discourse.brew.sh/t/why-was-with-default-names-removed/4405/2
+# for details
+alias grep='ggrep'
