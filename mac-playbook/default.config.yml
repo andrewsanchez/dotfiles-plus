@@ -55,6 +55,7 @@ homebrew_installed_packages:
   - yarn
   - youtube-dl
   - zsh-completions
+  - gooseberry
 
 homebrew_taps:
   - homebrew/core
@@ -62,6 +63,7 @@ homebrew_taps:
   - homebrew/cask-fonts
   - d12frosted/emacs-plus
   - bazelbuild/tap
+  - out-of-cheese-error/gooseberry
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
