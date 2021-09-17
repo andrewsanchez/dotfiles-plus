@@ -125,11 +125,12 @@ npm_packages:
   - name: js-beautify
 
 pip_packages:
-  - name: isort
   - name: black
+  - name: epc
   - name: flake8
   - name: importmagic
-  - name: epc
+  - name: isort
+  - name: iterm2
 
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
