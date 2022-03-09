@@ -10,7 +10,10 @@
 	default = current
 [merge]
 	ff = false
+	conflictStyle = diff3
 [forge]
 	remote = upstream
 [github]
 	user = andrewsanchez
+[rerere]
+	enabled = true
