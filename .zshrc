@@ -73,6 +73,9 @@ eval "$(direnv hook zsh)"
 # Homebrew's sbin
 export PATH="/usr/local/sbin:$HOME/usr/bin:$PATH"
 
+# Poetry
+export PATH="~/.local/bin:$PATH"
+
 export NVM_DIR="$HOME/.nvm"
 # load nvm
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
