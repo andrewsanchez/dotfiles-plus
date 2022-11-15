@@ -4,7 +4,7 @@ downloads: ~/.ansible-downloads/
 configure_dotfiles: yes
 configure_sudoers: no
 configure_terminal: no
-configure_osx: no
+configure_osx: yes
 
 dotfiles_repo: https://github.com/andrewsanchez/dotfiles-plus.git
 dotfiles_repo_accept_hostkey: yes
@@ -14,6 +14,7 @@ dotfiles_files:
   - .gitconfig
   - .zshrc
   - .zsh_custom
+  - .osx
 
 homebrew_installed_packages:
   - autoconf
