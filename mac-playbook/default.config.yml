@@ -16,6 +16,8 @@ dotfiles_files:
   - .zsh_custom
   - .osx
 
+homebrew_cask_accept_external_apps: true
+
 homebrew_installed_packages:
   - autoconf
   - awscli
@@ -37,7 +39,8 @@ homebrew_installed_packages:
   - httpie
   - hub
   - ispell
-  - miniconda 
+  # Miniconda fails erroneously.
+  # - miniconda 
   - nvm
   - openssl
   - pandoc
@@ -134,5 +137,4 @@ anki_repos:
   - anki-docs
   - anki-manual
   - anki-palace-butler
-  - anki_collab
   - bundled-add-ons
