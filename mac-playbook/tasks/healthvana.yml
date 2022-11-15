@@ -10,7 +10,7 @@
     repo: "https://github.com/healthvana/{{ item }}.git"
     dest: "~/healthvana/{{ item }}"
     accept_hostkey: yes
-    version: master
+    version: main
   become: false
   tags:
     - "healthvana"
