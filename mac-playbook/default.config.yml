@@ -70,12 +70,9 @@ homebrew_cask_apps:
   - android-file-transfer
   - anki
   - bitwarden
-  - copyq
   - db-browser-for-sqlite
-  - discord
   - docker
   - dropbox
-  - evernote
   - firefox
   - flux
   - font-source-code-pro
@@ -85,14 +82,10 @@ homebrew_cask_apps:
   - keyboard-maestro
   - libreoffice
   - mactex
-  - notion
   - pycharm
   - slack
-  - spotify
-  - telegram
   - visual-studio-code
   - vlc
-  - whatsapp
   - zoom
   - xquartz
 
