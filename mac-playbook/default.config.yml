@@ -132,7 +132,7 @@ healthvana_repos:
 anki_repos:
   - anki
   - ankihub
-  - ankihub-addon
+  - ankihub_addon
   - anki-addons
   - anki-docs
   - anki-manual
