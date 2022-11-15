@@ -1,0 +1,17 @@
+---
+
+- name: Create dest
+  file:
+    path: "~/healthvana"
+    state: directory
+
+- name: Clone Healthvana repositories.
+  git:
+    repo: "https://github.com/healthvana/{{ item }}.git"
+    dest: "~/healthvana/{{ item }}"
+    accept_hostkey: yes
+    version: master
+  become: false
+  tags:
+    - "healthvana"
+  loop: "{{ healthvana_repos }}"

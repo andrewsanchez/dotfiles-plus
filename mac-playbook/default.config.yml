@@ -129,8 +129,8 @@ pip_packages:
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
 
-qiime_repos:
-  - qiime2
+healthvana_repos:
+  - h
 
 anki_repos:
   - anki

@@ -43,8 +43,8 @@
         loop_var: outer_item
       with_fileglob: "{{ post_provision_tasks|default(omit) }}"
 
-    - include_tasks: tasks/qiime.yml
-      tags: ['qiime']
+    - include_tasks: tasks/healthvana.yml
+      tags: ['healthvana']
 
     - include_tasks: tasks/anki.yml
       tags: ['anki']
