@@ -31,6 +31,8 @@ homebrew_installed_packages:
   - fd
   - ffmpeg
   - fzf
+  # GitHub CLI
+  - gh
   - git
   - gpg
   - graphviz
